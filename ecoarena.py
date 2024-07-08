@@ -1,7 +1,3 @@
-
-
-#EMBELEZAR O TERMINAL
-
 import os
 import random
 import string
