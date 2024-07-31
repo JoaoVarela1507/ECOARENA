@@ -158,6 +158,7 @@ def cadastrar_alimento(username, index, caminho_pontos):
     }
     
     codigo_alimento = input("\n ▶ Digite o código do alimento: ")
+    codigo_alimento = codigo_alimento.upper()
     
     if codigo_alimento in pontos_por_codigo:
         pontos_adicionados = pontos_por_codigo[codigo_alimento]
@@ -332,13 +333,7 @@ def resgate_de_premios(index, caminho_pontos, pontos_usuario, premios_NT, premio
 
     while True:
         escolha_de_premios = input("\n▶ Qual prêmio você deseja resgatar? (informe um número de 1 a 14): ")
-        limpar_tela()
-        texto = '''
-        ▒█▀▀▀ ▒█▀▀█ ▒█▀▀▀█ ░█▀▀█ ▒█▀▀█ ▒█▀▀▀ ▒█▄░▒█ ░█▀▀█ 
-        ▒█▀▀▀ ▒█░░░ ▒█░░▒█ ▒█▄▄█ ▒█▄▄▀ ▒█▀▀▀ ▒█▒█▒█ ▒█▄▄█ 
-        ▒█▄▄▄ ▒█▄▄█ ▒█▄▄▄█ ▒█░▒█ ▒█░▒█ ▒█▄▄▄ ▒█░░▀█ ▒█░▒█
-    '''
-        print(texto)
+        
         if escolha_de_premios in premio_to_cost:
             custo_pontos = premio_to_cost[escolha_de_premios]
             
