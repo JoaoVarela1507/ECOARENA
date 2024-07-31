@@ -257,7 +257,7 @@ def patamar(username, caminho_pontos, index):
     print(texto)
     premios_NT = ['⤴ 1: 1 CERVEJA', '⤴ 2: 1 REFRIGERANTE', '⤴ 3: 1 SALGADINHO']
     premios_AF = ['⤴ 4: 2 CERVEJAS', '⤴ 5: 1 PIZZA', '⤴ 6: 1 HAMBURGUER', '⤴ 7: 1 CHURROS', '⤴ 8: 1 CACHORRO QUENTE']
-    premios_LL = ['⤴ 9: 3 CERVEJAS', '⤴ 10: 1 PIZZA + REFRIGERANTE', '⤴ 11: 1 HAMBURGUER + REFRIGERANTE', '⤴ 12: 1 CHURROS + REFRIGERANTE', '13: 1 CACHORRO QUENTE + REFRIGERANTE']
+    premios_LL = ['⤴ 9: 3 CERVEJAS', '⤴ 10: 1 PIZZA + REFRIGERANTE', '⤴ 11: 1 HAMBURGUER + REFRIGERANTE', '⤴ 12: 1 CHURROS + REFRIGERANTE', '⤴ 13: 1 CACHORRO QUENTE + REFRIGERANTE']
 
     if not os.path.exists(caminho_pontos):
         print(f"\n ☒  {username}, você não possui pontos cadastrados. ☒")
@@ -332,7 +332,13 @@ def resgate_de_premios(index, caminho_pontos, pontos_usuario, premios_NT, premio
 
     while True:
         escolha_de_premios = input("\n▶ Qual prêmio você deseja resgatar? (informe um número de 1 a 14): ")
-
+        limpar_tela()
+        texto = '''
+        ▒█▀▀▀ ▒█▀▀█ ▒█▀▀▀█ ░█▀▀█ ▒█▀▀█ ▒█▀▀▀ ▒█▄░▒█ ░█▀▀█ 
+        ▒█▀▀▀ ▒█░░░ ▒█░░▒█ ▒█▄▄█ ▒█▄▄▀ ▒█▀▀▀ ▒█▒█▒█ ▒█▄▄█ 
+        ▒█▄▄▄ ▒█▄▄█ ▒█▄▄▄█ ▒█░▒█ ▒█░▒█ ▒█▄▄▄ ▒█░░▀█ ▒█░▒█
+    '''
+        print(texto)
         if escolha_de_premios in premio_to_cost:
             custo_pontos = premio_to_cost[escolha_de_premios]
             
