@@ -27,6 +27,56 @@ body {
     text-align: center;
 }
 
+.card1 {
+    width: 18rem;
+    border: 1px solid #333;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    background-color: #2a2c31; /* Cor de fundo do card */
+    color: #fff; /* Cor do texto */
+}
+
+.card1 img {
+    width: 100%;
+    height: auto;
+    display: block;
+    object-fit: cover;
+}
+
+.card1 .card-body {
+    padding: 1rem;
+}
+
+.card1 .card-title {
+    font-size: 1.25rem;
+    margin-bottom: 0.75rem;
+    color: #fff; /* Cor do título */
+}
+
+.card1 .card-text {
+    font-size: 1rem;
+    margin-bottom: 1rem;
+    color: #ccc; /* Cor do texto */
+}
+
+.card1 .btn-primary {
+    background-color: #007bff;
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 5px;
+    color: #fff;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 1rem;
+    transition: background-color 0.3s ease;
+}
+
+.card1 .btn-primary:hover {
+    background-color: #0056b3;
+}
+
 
 
 
