@@ -3,6 +3,8 @@ body {
     margin: 0;
     background-color: #454d6b;
     background-image: url("/Front/img/ECOARENA.png");
+    background-repeat: no-repeat;
+    background-size: cover;
 }
 
 #login {
