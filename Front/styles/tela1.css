@@ -13,12 +13,17 @@ body {
     flex-direction: column; 
     height: 100vh;
     font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
-    
+}
+
+.logo {
+    background-color: rgba(14, 13, 13, 0.5); /* Fundo cinza transparente */
+    padding: 10px; 
+    border-radius: 50px; 
+    margin-bottom: 20px;
 }
 
 .logo img {
     width: 140px;
-    margin-bottom: 20px;
 }
 
 .card {
@@ -29,9 +34,8 @@ body {
     text-align: center;
 }
 
-
-.card1 {
-    width: 18rem;
+.card1, .card2 { /* Apliquei a mesma estrutura para os dois cards */
+    width: 18rem; /* Tamanho consistente para os cards */
     border: 1px solid #333;
     border-radius: 10px;
     overflow: hidden;
@@ -41,32 +45,32 @@ body {
     margin-left: 15px;
 }
 
-.card1 img {
+.card1 img, .card2 img {
     width: 100%;
-    height: auto;
+    height: 500px; /* Tamanho fixo para altura */
     display: block;
-    object-fit: cover;
+    object-fit: cover; /* Ajuste a imagem para cobrir o espaço sem distorcer */
 }
 
-.card1 .card-body {
+.card1 .card-body, .card2 .card-body {
     padding: 1rem;
 }
 
-.card1 .card-title {
+.card1 .card-title, .card2 .card-title {
     font-size: 1.25rem;
     margin-bottom: 0.75rem;
     color: #fff; /* Cor do título */
     text-align: center;
 }
 
-.card1 .card-text {
+.card1 .card-text, .card2 .card-text {
     font-size: 1rem;
     margin-bottom: 1rem;
     color: #ccc; /* Cor do texto */
     text-align: center;
 }
 
-.card1 .btn-primary {
+.card1 .btn-primary, .card2 .btn-primary {
     background-color: #1ad2099a;
     border: none;
     padding: 0.5rem 1rem;
@@ -74,12 +78,12 @@ body {
     color: #fff;
     text-align: center;
     text-decoration: none;
-    display:grid;
+    display: grid;
     font-size: 1rem;
     transition: background-color 0.3s ease;
 }
 
-.card1 .btn-primary:hover {
+.card1 .btn-primary:hover, .card2 .btn-primary:hover {
     background-color: #4f5913;
 }
 
@@ -116,4 +120,24 @@ body {
 
 .next {
     right: 0;
+}
+
+.logout-container {
+    margin-top: 20px;
+}
+
+.btn-logout {
+    background-color: #e74c3c;
+    color: #fff;
+    padding: 0.75rem 1.5rem;
+    border: none;
+    border-radius: 5px;
+    font-size: 1rem;
+    text-decoration: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.btn-logout:hover {
+    background-color: #a0483e;
 }
