@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/Front/styles/arena-localizacao.css">
+    <title>ECOARENA - CADASTRO</title>
+</head>
+<body>
+    <div id="login">
+        <form class="card">
+            <div class="logo">
+                <img src="/Front/img/logo-ecoarena.png" alt="Logo ECOARENA">
+            </div>
+            <div class="card-header">
+                <h2>ARENA PERNAMBUCO</h2>
+            </div>
+            <div class="imagem-arena-pe">
+                <img src="/Front/img/arena-pernambuco.png" alt="Imagem da arena-pernambuco">
+            </div>
+            <h5 class="cod-title">NEM TODOS OS SETORES POSSUEM LIXEIRAS SELETIVAS, INFORME SEU SETOR PARA CONFERIR SE POSSUI LIXEIRAS PRÓXIMAS, CASO NÃO TENHA NO SEU SETOR VÁ NO MAIS INDICADO!</h5>
+            <div class="card-content">
+                <div class="card-content-area">
+                    <label for="usuario">PASSE O MOUSE EM CIMA</label>
+                    <div class="dropdown" id="dropdown">
+                        <button class="dropdown-button" id="dropdownButton">SETORES</button>
+                        <div class="dropdown-content" id="dropdownContent">
+                            <a href="#">SUL INFERIOR</a>
+                            <a href="#">SUL SUPERIOR</a>
+                            <a href="#">NORTE INFERIOR</a>
+                            <a href="#">NORTE SUPERIOR</a>
+                            <a href="#">LESTE INFERIOR</a>
+                            <a href="#">LESTE SUPERIOR</a>
+                            <a href="#">OESTE INFERIOR</a>
+                            <a href="#">OESTE SUPERIOR</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+
+    <script>
+        const dropdown = document.getElementById('dropdown');
+        const dropdownContent = document.getElementById('dropdownContent');
+        const dropdownButton = document.getElementById('dropdownButton');
+
+        // Evento para mostrar o dropdown ao passar o mouse
+        dropdownButton.addEventListener('mouseenter', () => {
+            dropdownContent.style.display = 'flex';
+        });
+
+        // Evento para esconder o dropdown quando o mouse sai do botão ou do menu
+        dropdown.addEventListener('mouseleave', () => {
+            dropdownContent.style.display = 'none';
+        });
+    </script>
+</body>
+</html>
