@@ -46,15 +46,13 @@
         const dropdownContent = document.getElementById('dropdownContent');
         const dropdownButton = document.getElementById('dropdownButton');
 
-        // Evento para mostrar o dropdown ao passar o mouse
         dropdownButton.addEventListener('mouseenter', () => {
             dropdownContent.style.display = 'flex';
         });
-
-        // Evento para esconder o dropdown quando o mouse sai do botão ou do menu
         dropdown.addEventListener('mouseleave', () => {
             dropdownContent.style.display = 'none';
         });
+
     </script>
 </body>
 </html>
