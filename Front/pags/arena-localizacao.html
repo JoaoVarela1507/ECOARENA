@@ -26,14 +26,14 @@
                     <div class="dropdown" id="dropdown">
                         <button class="dropdown-button" id="dropdownButton">SETORES</button>
                         <div class="dropdown-content" id="dropdownContent">
-                            <a href="#">SUL INFERIOR</a>
-                            <a href="#">SUL SUPERIOR</a>
-                            <a href="#">NORTE INFERIOR</a>
-                            <a href="#">NORTE SUPERIOR</a>
-                            <a href="#">LESTE INFERIOR</a>
-                            <a href="#">LESTE SUPERIOR</a>
-                            <a href="#">OESTE INFERIOR</a>
-                            <a href="#">OESTE SUPERIOR</a>
+                            <a href="#" class="setor" data-setor="SUL INFERIOR">SUL INFERIOR</a>
+                            <a href="#" class="setor" data-setor="SUL SUPERIOR">SUL SUPERIOR</a>
+                            <a href="#" class="setor" data-setor="NORTE INFERIOR">NORTE INFERIOR</a>
+                            <a href="#" class="setor" data-setor="NORTE SUPERIOR">NORTE SUPERIOR</a>
+                            <a href="#" class="setor" data-setor="LESTE INFERIOR">LESTE INFERIOR</a>
+                            <a href="#" class="setor" data-setor="LESTE SUPERIOR">LESTE SUPERIOR</a>
+                            <a href="#" class="setor" data-setor="OESTE INFERIOR">OESTE INFERIOR</a>
+                            <a href="#" class="setor" data-setor="OESTE SUPERIOR">OESTE SUPERIOR</a>
                         </div>
                     </div>
                 </div>
@@ -53,6 +53,50 @@
             dropdownContent.style.display = 'none';
         });
 
+        const setores = document.querySelectorAll('.setor');
+
+        setores.forEach(setor => {
+            setor.addEventListener('click', (event) => {
+                event.preventDefault();
+                const nomeSetor = setor.getAttribute('data-setor');
+
+                let message = '';
+                let redirectUrl = '/caminho/para/tela1.html'; // URL da tela1
+
+                switch (nomeSetor) {
+                    case 'SUL INFERIOR':
+                        message = '☒  Não há lixeiras seletivas neste setor. Vá para o setor Oeste inferior, onde há lixeiras seletivas. ☒';
+                        break;
+                    case 'SUL SUPERIOR':
+                        message = '☑  Há lixeiras seletivas neste setor. Faça o descarte de forma correta. ☑';
+                        break;
+                    case 'NORTE INFERIOR':
+                        message = '☒  Não há lixeiras seletivas neste setor. Vá para o setor Oeste inferior, onde há lixeiras seletivas. ☒';
+                        break;
+                    case 'NORTE SUPERIOR':
+                        message = '☑  Há lixeiras seletivas neste setor. Faça o descarte de forma correta. ☑';
+                        break;
+                    case 'LESTE INFERIOR':
+                        message = '☒  Não há lixeiras seletivas neste setor. Vá para o setor Sul inferior, onde há lixeiras seletivas. ☒';
+                        break;
+                    case 'LESTE SUPERIOR':
+                        message = '☑  Há lixeiras seletivas neste setor. Faça o descarte de forma correta. ☑';
+                        break;
+                    case 'OESTE INFERIOR':
+                        message = '☑  Há lixeiras seletivas neste setor. Faça o descarte de forma correta. ☑';
+                        break;
+                    case 'OESTE SUPERIOR':
+                        message = '☒  Não há lixeiras seletivas neste setor. Vá para o setor Norte superior, onde há lixeiras seletivas. ☒';
+                        break;
+                    default:
+                        message = 'Setor não identificado.';
+                        redirectUrl = '/Front/pags/tela1.html';
+                }
+
+                alert(message);
+                window.location.href = redirectUrl;
+            });
+        });
     </script>
 </body>
 </html>
