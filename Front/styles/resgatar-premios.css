@@ -44,33 +44,6 @@ body {
     margin-top: -17px;
 }
 
-.imagem-asc {
-    display: flex;
-    justify-content: center;  
-    align-items: center;
-    margin-bottom: -40px;     
-}
-
-.imagem-asc img {
-    max-width: 100%;         
-    height: auto;             
-}
-
-.pontuacao {
-    text-align: center; /* Centraliza o texto horizontalmente */
-    font-size: 40px;    /* Tamanho da fonte */
-    color: #03e403;     /* Cor do texto */
-    margin-top: 10px;   /* Espaço acima do texto */
-}
-
-.patente {
-    text-align: center; /* Centraliza o texto horizontalmente */
-    font-size: 24px;    /* Tamanho da fonte */
-    color: #03e403;     /* Cor do texto */
-    margin-top: 10px;   /* Espaço acima do texto */
-
-}
-
 
 .card-content label {
     color: #fff;
@@ -83,26 +56,20 @@ body {
     flex-direction: column;
 }
 
-.card-footer .submit,
 .card-footer .botao-cadastro {
     width: 100%;
-    height: 45px; 
-    background-color: #4f5913; 
+    height: 45px;
+    background-color: #4f5913;
     border: none;
     color: #e1e1e1;
-    margin: 15px 0; 
-    font-size: 16px; 
-    text-align: center; 
-    line-height: 45px; 
-    cursor: pointer; 
+    margin-top: 15px;
+    font-size: 16px;
+    cursor: pointer;
     transition: background-color 0.3s ease;
-    text-decoration: none; 
-    display: inline-block; 
 }
 
-.card-footer .submit:hover,
 .card-footer .botao-cadastro:hover {
-    background-color: #6c7b16; 
+    background-color: #6c7b16;
 }
 
 .cod-title {
@@ -112,22 +79,22 @@ body {
     margin-top: 10px;
 }
 
-.logout-container {
-    margin-top: 20px;
-}
-
-.btn-logout {
-    background-color: #e74c3c;
-    color: #fff;
-    padding: 0.75rem 1.5rem;
+.botao-premio {
+    width: 100%;
+    padding: 15px;
+    background-color: #4f5913;
+    color: #e1e1e1;
+    margin-bottom: 10px;
     border: none;
     border-radius: 5px;
-    font-size: 1rem;
-    text-decoration: none;
+    text-align: center;
+    font-size: 16px;
     cursor: pointer;
     transition: background-color 0.3s ease;
 }
 
-.btn-logout:hover {
-    background-color: #a0483e;
+.botao-premio:hover {
+    background-color: #6c7b16;
 }
+
+
