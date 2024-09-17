@@ -17,9 +17,9 @@
                 <h2>PONTUAÇÃO:</h2>
             </div>
             <div class="imagem-asc">
-                <img src="/Front/img/ascendente.png" alt="Imagem de Patente">
+                <img id="imagem-patente" src="/Front/img/ascendente.png" alt="Imagem de Patente">
             </div>
-            <h3 class="patente">ÍDOLO NACIONAL</h3> 
+            <h3 class="patente" id="patente-titulo">ÍDOLO NACIONAL</h3>
             <h3 class="pontuacao" id="pontuacao">1000</h3> 
             <h5 class="cod-title">Seu patamar e seus pontos acima</h5>
             <div class="card-footer">
@@ -31,11 +31,32 @@
         </form>
     </div>
 
-    <!-- JavaScript para exibir a pontuação do localStorage -->
+    <!-- JavaScript para atualizar imagem e título da patente -->
     <script>
         document.addEventListener("DOMContentLoaded", function () {
-            let pontosAtuais = localStorage.getItem("pontos") || 1000; // Valor inicial de 1000
+            let pontosAtuais = parseInt(localStorage.getItem("pontos")) || 1000; // Valor inicial de 1000
             document.getElementById("pontuacao").textContent = pontosAtuais;
+
+            const imagemPatente = document.getElementById("imagem-patente");
+            const patenteTitulo = document.getElementById("patente-titulo");
+
+            // Atualiza a imagem e o título com base na pontuação
+            if (pontosAtuais <= 200) {
+                imagemPatente.src = "/Front/img/sempatente.png";
+                patenteTitulo.textContent = "Sem Patente";
+            } else if (pontosAtuais <= 500) {
+                imagemPatente.src = "/Front/img/bronze.png";
+                patenteTitulo.textContent = "Novato da Torcida";
+            } else if (pontosAtuais <= 800) {
+                imagemPatente.src = "/Front/img/prata.png";
+                patenteTitulo.textContent = "Amante do Futebol";
+            } else if (pontosAtuais <= 1000) {
+                imagemPatente.src = "/Front/img/ouro.png";
+                patenteTitulo.textContent = "Lenda Local";
+            } else {
+                imagemPatente.src = "/Front/img/ascendente.png";
+                patenteTitulo.textContent = "Ídolo Nacional";
+            }
         });
     </script>
 </body>
