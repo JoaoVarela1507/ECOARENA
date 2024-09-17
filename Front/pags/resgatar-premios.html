@@ -19,29 +19,29 @@
             <div class="card-content">
                 <!-- Seção para Novato da Torcida -->
                 <h3 class="nivel-title">Novato da Torcida: - 200PTS</h3>
-                <button class="botao-premio" id="novato-premio">1 Cerveja</button>
-                <button class="botao-premio" id="novato-premio">1 Refrigerante</button>
-                <button class="botao-premio" id="novato-premio">1 Salgadinho</button>
+                <button class="botao-premio" data-pontos="200">1 Cerveja</button>
+                <button class="botao-premio" data-pontos="200">1 Refrigerante</button>
+                <button class="botao-premio" data-pontos="200">1 Salgadinho</button>
 
                 <!-- Seção para Amante do Futebol -->
                 <h3 class="nivel-title">Amante do Futebol: - 500PTS</h3>
-                <button class="botao-premio" id="amante-premio">2 Cervejas</button>
-                <button class="botao-premio" id="amante-premio">1 Pizza</button>
-                <button class="botao-premio" id="amante-premio">1 Hambúrguer</button>
-                <button class="botao-premio" id="amante-premio">1 Churros</button>
-                <button class="botao-premio" id="amante-premio">1 Cachorro Quente</button>
+                <button class="botao-premio" data-pontos="500">2 Cervejas</button>
+                <button class="botao-premio" data-pontos="500">1 Pizza</button>
+                <button class="botao-premio" data-pontos="500">1 Hambúrguer</button>
+                <button class="botao-premio" data-pontos="500">1 Churros</button>
+                <button class="botao-premio" data-pontos="500">1 Cachorro Quente</button>
 
                 <!-- Seção para Lenda Local -->
                 <h3 class="nivel-title">Lenda Local: -800PTS</h3>
-                <button class="botao-premio" id="lenda-premio">3 Cervejas</button>
-                <button class="botao-premio" id="lenda-premio">1 Pizza + Refrigerante</button>
-                <button class="botao-premio" id="lenda-premio">1 Hambúrguer + Refrigerante</button>
-                <button class="botao-premio" id="lenda-premio">1 Churros + Refrigerante</button>
-                <button class="botao-premio" id="lenda-premio">1 Cachorro Quente + Refrigerante</button>
+                <button class="botao-premio" data-pontos="800">3 Cervejas</button>
+                <button class="botao-premio" data-pontos="800">1 Pizza + Refrigerante</button>
+                <button class="botao-premio" data-pontos="800">1 Hambúrguer + Refrigerante</button>
+                <button class="botao-premio" data-pontos="800">1 Churros + Refrigerante</button>
+                <button class="botao-premio" data-pontos="800">1 Cachorro Quente + Refrigerante</button>
 
                 <!-- Seção para Ídolo Nacional -->
                 <h3 class="nivel-title">Ídolo Nacional: -1000PTS</h3>
-                <button class="botao-premio" id="idolo-premio">2 Ingressos para qualquer jogo</button>
+                <button class="botao-premio" data-pontos="1000">2 Ingressos para qualquer jogo</button>
             </div>
             <div class="logout-container">
                 <a href="/Front/pags/verificar-pontos.html" class="btn btn-logout">VOLTAR</a>
@@ -58,45 +58,40 @@
                 botao.addEventListener("click", function (event) {
                     event.preventDefault();
 
-                    let pontos = 0;
-                    let nivel = event.target.id;
+                    // Obtém a quantidade de pontos necessária para o prêmio
+                    const pontos = parseInt(event.target.getAttribute("data-pontos"));
 
-                    // Atribui os pontos baseados no nível
-                    switch (nivel) {
-                        case "novato-premio":
-                            pontos = 200;
-                            break;
-                        case "amante-premio":
-                            pontos = 500;
-                            break;
-                        case "lenda-premio":
-                            pontos = 800;
-                            break;
-                        case "idolo-premio":
-                            pontos = 1000;
-                            break;
-                        default:
-                            pontos = 0;
-                            break;
-                    }
+                    // Recupera o nome de usuário do sessionStorage
+                    const usuario = sessionStorage.getItem('usuarioLogado');
+                    if (usuario) {
+                        // Recupera os dados do usuário do localStorage
+                        let userData = JSON.parse(localStorage.getItem(usuario));
+                        if (!userData) {
+                            userData = { senha: '', pontos: 0 };
+                            localStorage.setItem(usuario, JSON.stringify(userData));
+                        }
 
-                    // Subtrai os pontos do localStorage
-                    let pontosAtuais = localStorage.getItem("pontos") || 0; // Valor inicial de 1000
-                    pontosAtuais = parseInt(pontosAtuais);
-                    if (pontosAtuais >= pontos) {
-                        pontosAtuais -= pontos;
-                        localStorage.setItem("pontos", pontosAtuais);
+                        const pontosAtuais = userData.pontos;
+                        
+                        // Verifica se o usuário tem pontos suficientes
+                        if (pontosAtuais >= pontos) {
+                            userData.pontos -= pontos;
+                            localStorage.setItem(usuario, JSON.stringify(userData));
 
-                        // Gera um cupom aleatório
-                        const cupom = Math.random().toString(36).substring(2, 10).toUpperCase();
+                            // Gera um cupom aleatório
+                            const cupom = Math.random().toString(36).substring(2, 10).toUpperCase();
 
-                        // Mostra o alert com os pontos e o cupom
-                        alert(`☑ Você gastou ${pontos} pontos. Seu cupom é: ${cupom} ☑`);
+                            // Mostra o alert com os pontos e o cupom
+                            alert(`☑ Você gastou ${pontos} pontos. Seu cupom é: ${cupom} ☑`);
 
-                        // Redireciona para outra tela
-                        window.location.href = "/Front/pags/verificar-pontos.html";
+                            // Redireciona para a página de verificação de pontos
+                            window.location.href = "/Front/pags/verificar-pontos.html";
+                        } else {
+                            alert("☒ Pontos insuficientes para resgatar este prêmio. ☒");
+                        }
                     } else {
-                        alert("☒ Pontos insuficientes para resgatar este prêmio. ☒");
+                        alert("Nenhum usuário logado.");
+                        window.location.href = "/Front/pags/login.html"; // Redirecionar para login se não houver usuário logado
                     }
                 });
             });
