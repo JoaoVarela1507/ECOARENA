@@ -27,7 +27,7 @@
                 </div>
             </div>
             <div id="mensagem-sucesso" style="color: green; display: none;">
-                Código cadastrado com sucesso!
+                Código cadastrado com sucesso! <span id="pontos-ganhos"></span>
             </div>
             <div class="card-footer">
                 <button type="button" class="botao-cadastro" onclick="cadastrarAlimento()">CADASTRAR</button>
@@ -39,6 +39,7 @@
         function cadastrarAlimento() {
             const codigo = document.getElementById('codigo-alimento').value.toUpperCase();
             const mensagemSucesso = document.getElementById('mensagem-sucesso');
+            const pontosGanhos = document.getElementById('pontos-ganhos');
 
             const alimentos = {
                 "PL01": 15, // ESPETINHO (PLÁSTICO)
@@ -75,7 +76,8 @@
                     // Atualiza o localStorage com os novos dados
                     localStorage.setItem(usuario, JSON.stringify(userData));
 
-                    // Exibe a mensagem de sucesso e redireciona após 2 segundos
+                    // Exibe a mensagem de sucesso com a quantidade de pontos ganhos
+                    pontosGanhos.textContent = `Você ganhou ${pontosAlimento} pontos!`;
                     mensagemSucesso.style.display = 'block';
                     setTimeout(function() {
                         window.location.href = "/Front/pags/arena-localizacao.html";
