@@ -1,16 +1,15 @@
 <!DOCTYPE html>
-
 <html lang="pt-br">
     <head>
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport"content="width=device-width, initial-scale=1.0">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="/Front/styles/cadastro.css">
         <title>ECOARENA - CADASTRO</title>
     </head>
     <body>
         <div id="login">
-            <form class="card">
+            <form class="card" id="cadastro-form">
                 <div class="logo">
                     <img src="/Front/img/logo-ecoarena.png" alt="Logo ECOARENA">
                 </div>
@@ -27,14 +26,41 @@
                         <input type="password" id="password" autocomplete="off" placeholder="Digite sua Senha (4 Números)">
                     </div>
                     <div class="card-content-area">
-                        <label for="password">Confirme a senha</label>
-                        <input type="password" id="password" autocomplete="off" placeholder="Confirme sua Senha (4 Números)">
+                        <label for="confirm-password">Confirme a senha</label>
+                        <input type="password" id="confirm-password" autocomplete="off" placeholder="Confirme sua Senha (4 Números)">
                     </div>
                 </div>
                 <div class="card-footer">
-                    <a href="/Front/pags/login.html" class="botao-cadastro">CADASTRAR</a>
+                    <button type="button" class="botao-cadastro" id="btn-cadastrar">CADASTRAR</button>
                 </div>
+                <p id="msg-erro"></p>
             </form>
         </div>
+
+        <script>
+            document.getElementById("btn-cadastrar").addEventListener("click", function() {
+                const usuario = document.getElementById("usuario").value;
+                const password = document.getElementById("password").value;
+                const confirmPassword = document.getElementById("confirm-password").value;
+                const msgErro = document.getElementById("msg-erro");
+
+                // Validação simples
+                if (usuario.length > 8 || password.length !== 4 || password !== confirmPassword) {
+                    msgErro.textContent = "Erro: Verifique os dados e tente novamente.";
+                    return;
+                }
+
+                // Verificar se já existe um usuário com esse nome
+                if (localStorage.getItem(usuario)) {
+                    msgErro.textContent = "Erro: Usuário já cadastrado.";
+                    return;
+                }
+
+                // Salvar no localStorage
+                localStorage.setItem(usuario, password);
+                alert("Cadastro realizado com sucesso!");
+                window.location.href = "/Front/pags/login.html"; // Redirecionar para a página de login
+            });
+        </script>
     </body>
 </html>
