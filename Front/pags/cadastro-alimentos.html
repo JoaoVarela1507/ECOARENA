@@ -58,19 +58,32 @@
             if (alimentos.hasOwnProperty(codigo)) {
                 let pontosAlimento = alimentos[codigo];
 
-                // Obtém os pontos atuais do localStorage, se não houver, inicia com 1000
-                let pontosAtuais = localStorage.getItem("pontos") || 0;
-                pontosAtuais = parseInt(pontosAtuais);
+                // Recuperar nome de usuário do sessionStorage
+                const usuario = sessionStorage.getItem('usuarioLogado');
+                if (usuario) {
+                    // Recuperar dados do usuário do localStorage
+                    let userData = JSON.parse(localStorage.getItem(usuario));
 
-                // Soma os pontos do alimento ao total de pontos
-                pontosAtuais += pontosAlimento;
-                localStorage.setItem("pontos", pontosAtuais);
+                    // Se os dados do usuário não existirem, definir pontuação inicial como 0
+                    if (!userData) {
+                        userData = { senha: '', pontos: 0 };
+                    }
 
-                // Exibe a mensagem de sucesso e redireciona após 2 segundos
-                mensagemSucesso.style.display = 'block';
-                setTimeout(function() {
-                    window.location.href = "/Front/pags/arena-localizacao.html";
-                }, 2000);
+                    // Soma os pontos do alimento ao total de pontos
+                    userData.pontos += pontosAlimento;
+
+                    // Atualiza o localStorage com os novos dados
+                    localStorage.setItem(usuario, JSON.stringify(userData));
+
+                    // Exibe a mensagem de sucesso e redireciona após 2 segundos
+                    mensagemSucesso.style.display = 'block';
+                    setTimeout(function() {
+                        window.location.href = "/Front/pags/arena-localizacao.html";
+                    }, 2000);
+                } else {
+                    alert("Nenhum usuário logado.");
+                    window.location.href = "/Front/pags/login.html"; // Redirecionar para login se não houver usuário logado
+                }
             } else {
                 alert('Código inválido. Por favor, insira um código válido.');
             }
