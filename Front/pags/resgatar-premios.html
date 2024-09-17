@@ -81,7 +81,7 @@
                     }
 
                     // Subtrai os pontos do localStorage
-                    let pontosAtuais = localStorage.getItem("pontos") || 1000; // Valor inicial de 1000
+                    let pontosAtuais = localStorage.getItem("pontos") || 0; // Valor inicial de 1000
                     pontosAtuais = parseInt(pontosAtuais);
                     if (pontosAtuais >= pontos) {
                         pontosAtuais -= pontos;

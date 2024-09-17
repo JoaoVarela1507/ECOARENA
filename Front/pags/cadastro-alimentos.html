@@ -59,7 +59,7 @@
                 let pontosAlimento = alimentos[codigo];
 
                 // Obtém os pontos atuais do localStorage, se não houver, inicia com 1000
-                let pontosAtuais = localStorage.getItem("pontos") || 1000;
+                let pontosAtuais = localStorage.getItem("pontos") || 0;
                 pontosAtuais = parseInt(pontosAtuais);
 
                 // Soma os pontos do alimento ao total de pontos
