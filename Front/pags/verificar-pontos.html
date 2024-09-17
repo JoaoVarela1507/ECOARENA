@@ -20,7 +20,7 @@
                 <img src="/Front/img/ascendente.png" alt="Imagem de Patente">
             </div>
             <h3 class="patente">ÍDOLO NACIONAL</h3> 
-            <h3 class="pontuacao">1000</h3> 
+            <h3 class="pontuacao" id="pontuacao">1000</h3> 
             <h5 class="cod-title">Seu patamar e seus pontos acima</h5>
             <div class="card-footer">
                 <a href="/Front/pags/resgatar-premios.html" class="botao-cadastro">PRÊMIOS</a>
@@ -30,5 +30,13 @@
             </div>
         </form>
     </div>
+
+    <!-- JavaScript para exibir a pontuação do localStorage -->
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            let pontosAtuais = localStorage.getItem("pontos") || 1000; // Valor inicial de 1000
+            document.getElementById("pontuacao").textContent = pontosAtuais;
+        });
+    </script>
 </body>
 </html>

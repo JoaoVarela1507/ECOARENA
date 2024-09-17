@@ -37,18 +37,42 @@
 
     <script>
         function cadastrarAlimento() {
-            const codigo = document.getElementById('codigo-alimento').value;
+            const codigo = document.getElementById('codigo-alimento').value.toUpperCase();
             const mensagemSucesso = document.getElementById('mensagem-sucesso');
 
-            const regex = /^[A-Za-z]{2}[0-9]{2}$/;
+            const alimentos = {
+                "PL01": 15, // ESPETINHO (PLÁSTICO)
+                "PL02": 10, // ÁGUA (PLÁSTICO)
+                "PL03": 30, // CACHORRO QUENTE (PLÁSTICO)
+                "PL04": 15, // SALGADINHO (PLÁSTICO)
+                "PL05": 30, // HAMBURGUER (PLÁSTICO)
+                "PL06": 40, // PIZZA (PLÁSTICO)
+                "PL07": 30, // CERVEJA (PLÁSTICO)
+                "PA01": 15, // PIPOCA (PAPEL)
+                "PA02": 20, // BATATA FRITA (PAPEL)
+                "PA03": 35, // CHURROS (PAPEL)
+                "ME01": 25  // REFRIGERANTE (METAL)
+            };
 
-            if (regex.test(codigo)) {
+            // Verifica se o código é válido
+            if (alimentos.hasOwnProperty(codigo)) {
+                let pontosAlimento = alimentos[codigo];
+
+                // Obtém os pontos atuais do localStorage, se não houver, inicia com 1000
+                let pontosAtuais = localStorage.getItem("pontos") || 1000;
+                pontosAtuais = parseInt(pontosAtuais);
+
+                // Soma os pontos do alimento ao total de pontos
+                pontosAtuais += pontosAlimento;
+                localStorage.setItem("pontos", pontosAtuais);
+
+                // Exibe a mensagem de sucesso e redireciona após 2 segundos
                 mensagemSucesso.style.display = 'block';
                 setTimeout(function() {
                     window.location.href = "/Front/pags/arena-localizacao.html";
                 }, 2000);
             } else {
-                alert('Código inválido. Por favor, insira um código no formato correto (XXYY).');
+                alert('Código inválido. Por favor, insira um código válido.');
             }
         }
     </script>
