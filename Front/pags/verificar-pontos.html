@@ -34,30 +34,47 @@
     <!-- JavaScript para atualizar imagem e título da patente -->
     <script>
         document.addEventListener("DOMContentLoaded", function () {
-            let pontosAtuais = parseInt(localStorage.getItem("pontos")) || 0; // Valor inicial de 1000
-            document.getElementById("pontuacao").textContent = pontosAtuais;
-
-            const imagemPatente = document.getElementById("imagem-patente");
-            const patenteTitulo = document.getElementById("patente-titulo");
-
-            // Atualiza a imagem e o título com base na pontuação
-            if (pontosAtuais >= 1000) {
-                imagemPatente.src = "/Front/img/ascendente.png";
-                patenteTitulo.textContent = "Ídolo Nacional";
-            } else if (pontosAtuais >= 800) {
-                imagemPatente.src = "/Front/img/ouro.png";
-                patenteTitulo.textContent = "Lenda Local";
-            } else if (pontosAtuais >= 500) {
-                imagemPatente.src = "/Front/img/prata.png";
-                patenteTitulo.textContent = "Amante do Futebol";
-            } else if (pontosAtuais >= 200) {
-                imagemPatente.src = "/Front/img/bronze.png";
-                patenteTitulo.textContent = "Novato da Torcida";
+            // Recuperar nome de usuário do sessionStorage
+            const usuario = sessionStorage.getItem('usuarioLogado');
+            if (usuario) {
+                // Recuperar dados do usuário do localStorage
+                let userData = JSON.parse(localStorage.getItem(usuario));
+    
+                // Se os dados do usuário não existirem, definir pontuação inicial como 0
+                if (!userData) {
+                    userData = { senha: '', pontos: 0 };
+                    localStorage.setItem(usuario, JSON.stringify(userData));
+                }
+    
+                const pontosAtuais = userData.pontos;
+                document.getElementById("pontuacao").textContent = pontosAtuais;
+    
+                const imagemPatente = document.getElementById("imagem-patente");
+                const patenteTitulo = document.getElementById("patente-titulo");
+    
+                // Atualiza a imagem e o título com base na pontuação
+                if (pontosAtuais >= 1000) {
+                    imagemPatente.src = "/Front/img/ascendente.png";
+                    patenteTitulo.textContent = "Ídolo Nacional";
+                } else if (pontosAtuais >= 800) {
+                    imagemPatente.src = "/Front/img/ouro.png";
+                    patenteTitulo.textContent = "Lenda Local";
+                } else if (pontosAtuais >= 500) {
+                    imagemPatente.src = "/Front/img/prata.png";
+                    patenteTitulo.textContent = "Amante do Futebol";
+                } else if (pontosAtuais >= 200) {
+                    imagemPatente.src = "/Front/img/bronze.png";
+                    patenteTitulo.textContent = "Novato da Torcida";
+                } else {
+                    imagemPatente.src = "/Front/img/sempatente.png";
+                    patenteTitulo.textContent = "Sem Patente";
+                }
             } else {
-                imagemPatente.src = "/Front/img/sempatente.png";
-                patenteTitulo.textContent = "Sem Patente";
+                alert("Nenhum usuário logado.");
+                window.location.href = "/Front/pags/login.html"; // Redirecionar para login se não houver usuário logado
             }
         });
     </script>
+    
 </body>
 </html>

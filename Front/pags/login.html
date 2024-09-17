@@ -1,55 +1,63 @@
 <!DOCTYPE html>
 <html lang="pt-br">
-    <head>
-        <meta charset="UTF-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" href="/Front/styles/login.css">
-        <title>ECOARENA - LOGIN</title>
-    </head>
-    <body>
-        <div id="login">
-            <form class="card" id="login-form">
-                <div class="logo">
-                    <img src="/Front/img/logo-ecoarena.png" alt="Logo ECOARENA">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/Front/styles/login.css">
+    <title>ECOARENA - LOGIN</title>
+</head>
+<body>
+    <div id="login">
+        <form class="card" id="login-form">
+            <div class="logo">
+                <img src="/Front/img/logo-ecoarena.png" alt="Logo ECOARENA">
+            </div>
+            <div class="card-header">
+                <h2>ECOARENA</h2>
+            </div>
+            <div class="card-content">
+                <div class="card-content-area">
+                    <label for="usuario">Usuário</label>
+                    <input type="text" id="usuario" autocomplete="off" placeholder="Digite seu nome de Usuário">
                 </div>
-                <div class="card-header">
-                    <h2>ECOARENA</h2>
+                <div class="card-content-area">
+                    <label for="password">Senha</label>
+                    <input type="password" id="password" autocomplete="off" placeholder="Digite sua Senha">
                 </div>
-                <div class="card-content">
-                    <div class="card-content-area">
-                        <label for="usuario">Usuário</label>
-                        <input type="text" id="usuario" autocomplete="off" placeholder="Digite seu nome de Usuário">
-                    </div>
-                    <div class="card-content-area">
-                        <label for="password">Senha</label>
-                        <input type="password" id="password" autocomplete="off" placeholder="Digite sua Senha">
-                    </div>
-                </div>
-                <div class="card-footer">
-                    <button type="button" class="botao-cadastro" id="btn-logar">LOGAR</button>
-                </div>
-                <p class="login-link">Você ainda não possui conta? <a href="/Front/pags/cadastro.html">Cadastrar</a></p>
-                <p id="msg-erro"></p>
-            </form>
-        </div>
+            </div>
+            <div class="card-footer">
+                <button type="button" class="botao-cadastro" id="btn-logar">LOGAR</button>
+            </div>
+            <p class="login-link">Você ainda não possui conta? <a href="/Front/pags/cadastro.html">Cadastrar</a></p>
+            <p id="msg-erro"></p>
+        </form>
+    </div>
 
-        <script>
-            document.getElementById("btn-logar").addEventListener("click", function() {
-                const usuario = document.getElementById("usuario").value;
-                const password = document.getElementById("password").value;
-                const msgErro = document.getElementById("msg-erro");
-
-                // Verificar se o usuário existe no localStorage
-                const storedPassword = localStorage.getItem(usuario);
-
-                if (!storedPassword || storedPassword !== password) {
-                    msgErro.textContent = "Erro: Usuário ou senha incorretos.";
+    <script>
+        document.getElementById("btn-logar").addEventListener("click", function() {
+            const usuario = document.getElementById("usuario").value;
+            const password = document.getElementById("password").value;
+            const msgErro = document.getElementById("msg-erro");
+    
+            // Verificar se o usuário existe no localStorage
+            const storedUserData = localStorage.getItem(usuario);
+    
+            if (!storedUserData) {
+                msgErro.textContent = "Erro: Usuário não encontrado.";
+            } else {
+                const userData = JSON.parse(storedUserData);
+    
+                if (userData.senha !== password) {
+                    msgErro.textContent = "Erro: Senha incorreta.";
                 } else {
+                    // Configurar o sessionStorage
+                    sessionStorage.setItem('usuarioLogado', usuario);
                     alert("Login realizado com sucesso!");
                     window.location.href = "/Front/pags/tela1.html"; // Redirecionar para a página principal
                 }
-            });
-        </script>
-    </body>
+            }
+        });
+    </script>
+</body>
 </html>
